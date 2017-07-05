@@ -1,0 +1,3 @@
+export const LOGGED_IN = 'LOGGED_IN';
+export const ANONYMOUS = 'ANONYMOUS';
+export const AWAITING_AUTH_RESPONSE = 'AWAITING_AUTH_RESPONSE';
