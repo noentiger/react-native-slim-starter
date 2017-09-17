@@ -6,7 +6,7 @@ const app = {
 
 const brand = {
   brand: {
-    primary: '#FFE5B4',
+    primary: '#ff98a4',
     secondary: '#2E47EA',
   },
 };

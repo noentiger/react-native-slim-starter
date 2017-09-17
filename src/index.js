@@ -10,6 +10,8 @@ const CODE_PUSH_OPTIONS = {
   installMode: codePush.InstallMode.IMMEDIATE,
 };
 
+console.disableYellowBox = true;
+
 @codePush
 class StarterApp extends Component {
 
