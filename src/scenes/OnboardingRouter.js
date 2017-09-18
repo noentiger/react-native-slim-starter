@@ -5,7 +5,7 @@ import { Scene, Router } from 'react-native-router-flux';
 import { AppConfig } from '@constants/';
 
 // Scenes
-import Placeholder from '@components/general/Placeholder';
+import Placeholder from '@containers/Onboarding/OnboardingContainer';
 
 const OnboardingRouter = ({ getSceneStyles }) => (
   <Router getSceneStyles={getSceneStyles}>
@@ -17,13 +17,14 @@ const OnboardingRouter = ({ getSceneStyles }) => (
         clone
         component={Placeholder}
         analyticsDesc={'Onboarding: Onboard'}
+        hideNavBar
       />
     </Scene>
   </Router>
 );
 
 OnboardingRouter.propTypes = {
-  getSceneStyles: PropTypes.func.isRequired,
+  getSceneStyles: PropTypes.func,
 };
 
 export default OnboardingRouter;

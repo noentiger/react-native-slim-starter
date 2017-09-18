@@ -3813,6 +3813,12 @@ react-devtools-core@^2.0.8:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-app-onboarding@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-app-onboarding/-/react-native-app-onboarding-0.1.1.tgz#409f8ab966be98e2f4ab58ba311fbaeba3d2e231"
+  dependencies:
+    tinycolor2 "^1.4.1"
+
 react-native-code-push@^3.0.1-beta:
   version "3.0.1-beta"
   resolved "https://registry.yarnpkg.com/react-native-code-push/-/react-native-code-push-3.0.1-beta.tgz#592b9bd579437b8d7e76c139571bda3a1975a0cb"
@@ -4767,6 +4773,10 @@ thunkify@~2.1.1:
 time-stamp@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.1.0.tgz#764a5a11af50561921b133f3b44e618687e0f5c3"
+
+tinycolor2@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
 
 tmp@^0.0.29:
   version "0.0.29"

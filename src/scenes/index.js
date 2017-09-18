@@ -44,7 +44,7 @@ Routes.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isOnboarded: state.user.isOnboarded,
+  isOnboarded: state.user.settings.isOnboarded,
   isLoggedIn: state.user.isLoggedIn,
 });
 

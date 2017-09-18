@@ -2,6 +2,7 @@ import {
   ATTEMPTING_LOGIN,
   LOGOUT,
   LOGIN_USER,
+  UPDATE_USER_SETTINGS,
 } from './ActionTypes';
 
 import * as constants from './constants';
@@ -16,7 +17,9 @@ const initialState = {
     providerData: [],
   },
   isLoggedIn: false,
-  isOnboarded: true,
+  settings: {
+    isOnboarded: false,
+  },
 };
 
 export default (state = initialState, action) => {
@@ -31,10 +34,21 @@ export default (state = initialState, action) => {
     case LOGIN_USER:
       return {
         ...state,
+        ...action.data,
+        ...action.data.user,
+        settings: {
+          ...state.settings,
+          ...action.data.settings,
+        },
         currently: constants.LOGGED_IN,
-        uid: action.data.user.uid,
-        profile: action.data.profile,
         isLoggedIn: true,
+      };
+    case UPDATE_USER_SETTINGS:
+      return {
+        ...state,
+        settings: {
+          ...action.data,
+        },
       };
     default:
       return state;

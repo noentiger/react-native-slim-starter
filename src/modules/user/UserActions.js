@@ -5,28 +5,34 @@ import {
   ATTEMPTING_LOGIN,
   LOGOUT,
   LOGIN_USER,
+  UPDATE_USER_SETTINGS,
 } from './ActionTypes';
 
 export const listeningToAuth = () =>
-  (dispatch, getState) => {
+  (dispatch) => {
     firestack.auth.listenForAuth((event) => {
       if (!event.authenticated) {
         dispatch({ type: LOGOUT });
       } else {
         const user = event.user;
-        console.log('user', user);
-        dispatch({
-          type: LOGIN_USER,
-          data: {
-            user,
-            profile: {
-              displayName: user.displayName,
-              avatarUrl: user.photoURL,
-              email: user.email,
-            },
-            providerData: user.providerData,
-          },
-        });
+        firestack.database
+          .ref(`users/${user.uid}/settings`)
+          .once('value', (snapshot) => {
+            const settings = snapshot.val();
+            dispatch({
+              type: LOGIN_USER,
+              data: {
+                user,
+                settings,
+                profile: {
+                  displayName: user.displayName,
+                  avatarUrl: user.photoURL,
+                  email: user.email,
+                },
+                providerData: user.providerData,
+              },
+            });
+          });
       }
     });
   };
@@ -49,19 +55,35 @@ export const attemptLogin = () =>
     });
   };
 
-export const logOut = () =>
+export const updateSettings = obj =>
     (dispatch, getState) => {
+      const user = getState().user;
+      const settings = user.settings;
+      firestack.database
+        .ref(`users/${user.uid}/settings`)
+        .set(obj);
+      dispatch({
+        type: UPDATE_USER_SETTINGS,
+        data: {
+          ...settings,
+          ...obj,
+        },
+      });
+    };
+
+export const logOut = () =>
+    (dispatch) => {
       firestack.auth.signOut()
-      .then((res) => {
+      .then(() => {
         dispatch({
           type: LOGOUT,
         });
       })
-      .catch(err => console.error('Uh oh... something weird happened'));
+      .catch(() => console.error('Uh oh... something weird happened'));
     };
 
 export const loginWithFacebook = () =>
-    (dispatch, getState) => {
+    (dispatch) => {
       dispatch({ type: ATTEMPTING_LOGIN });
       LoginManager.logInWithReadPermissions(['public_profile']).then(
         (result) => {

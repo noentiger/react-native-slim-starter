@@ -19,6 +19,7 @@
     "eslint-plugin-react": "^7.0.1",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.1",
+    "react-native-app-onboarding": "^0.1.1",
     "react-native-code-push": "^3.0.1-beta",
     "react-native-elements": "^0.12.2",
     "react-native-fbsdk": "^0.6.0",
